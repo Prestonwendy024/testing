@@ -4,44 +4,8 @@ import { Eye, EyeOff, Lock, Unlock, Plus } from 'lucide-react'
 const ClientCards: React.FC = () => {
   const [showCardNumbers, setShowCardNumbers] = useState(false)
 
-  const cards = [
-    {
-      id: 1,
-      type: 'Credit',
-      name: 'Meridian Platinum',
-      number: '4532 **** **** 1234',
-      fullNumber: '4532 1234 5678 1234',
-      expiry: '12/25',
-      cvv: '123',
-      balance: 25000,
-      limit: 50000,
-      status: 'active'
-    },
-    {
-      id: 2,
-      type: 'Debit',
-      name: 'Meridian Debit',
-      number: '5678 **** **** 5678',
-      fullNumber: '5678 9012 3456 5678',
-      expiry: '08/26',
-      cvv: '456',
-      balance: 12500,
-      limit: 0,
-      status: 'active'
-    },
-    {
-      id: 3,
-      type: 'Credit',
-      name: 'Meridian Rewards',
-      number: '7890 **** **** 9012',
-      fullNumber: '7890 3456 7890 9012',
-      expiry: '03/27',
-      cvv: '789',
-      balance: 8000,
-      limit: 15000,
-      status: 'locked'
-    }
-  ]
+  // TODO: Replace with real card data from context or props
+  const cards: any[] = []
 
   const toggleCardNumbers = () => {
     setShowCardNumbers(!showCardNumbers)

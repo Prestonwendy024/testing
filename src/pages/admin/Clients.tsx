@@ -60,10 +60,9 @@ const AdminClients = () => {
           risk_level: formData.risk_level as 'low' | 'medium' | 'high',
         })
       } else {
-        const accountNumber = generateAccountNumber()
         const clientData = {
           ...formData,
-          account_number: accountNumber,
+          account_number: '', // Placeholder until first account is created
           annual_income: formData.annual_income ? parseFloat(formData.annual_income) : 0,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
@@ -170,8 +169,10 @@ const AdminClients = () => {
       // Create account
       await addAccount(accountData)
       
-      // Update client with account number
-      await updateClient(selectedClient.id, { account_number: accountNumber })
+      // Only set account_number for the client if not already set
+      if (!selectedClient.account_number) {
+        await updateClient(selectedClient.id, { account_number: accountNumber })
+      }
       
       // Send email to client (mock)
       console.log(`Email sent to ${selectedClient.email} with account number: ${accountNumber}`)

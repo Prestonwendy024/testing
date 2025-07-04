@@ -38,8 +38,8 @@ const ClientAccounts: React.FC = () => {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Accounts</h1>
-              <p className="text-gray-600">Manage and monitor account balances</p>
+              <h1 className="text-2xl font-bold text-gray-900">My Accounts</h1>
+              <p className="text-gray-600">Manage and monitor your account balances</p>
             </div>
             <div className="flex items-center space-x-3">
               <button

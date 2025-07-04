@@ -9,9 +9,24 @@ const DigitalWallet: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview')
 
   const userAccounts = accounts.filter(account => account.client_id === user?.id)
-  const totalBalance = userAccounts.reduce((sum, account) => sum + account.balance, 0)
+  // Calculate live balance as the sum of all transactions for each account
+  const getLiveBalance = (accountId: string) => {
+    return transactions
+      .filter(t => t.account_id === accountId)
+      .reduce((sum, t) => sum + t.amount, 0)
+  }
+  const totalBalance = userAccounts.reduce((sum, account) => sum + getLiveBalance(account.id), 0)
   const userTransactions = transactions.filter(transaction => userAccounts.some(account => account.id === transaction.account_id))
   const recentActivity = userTransactions.slice(0, 5)
+
+  // Calculate 'This Month' as the sum of all positive transactions for the current month
+  const now = new Date()
+  const thisMonthIncome = userTransactions
+    .filter(t => {
+      const date = new Date(t.created_at)
+      return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear() && t.amount > 0
+    })
+    .reduce((sum, t) => sum + t.amount, 0)
 
   const walletFeatures = [
     {
@@ -87,7 +102,7 @@ const DigitalWallet: React.FC = () => {
             </div>
             <div>
               <p className="text-sm text-gray-300">This Month</p>
-              <p className="text-lg font-semibold text-green-400">+$1,250.00</p>
+              <p className="text-lg font-semibold text-green-400">+${thisMonthIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
         </div>
@@ -145,7 +160,7 @@ const DigitalWallet: React.FC = () => {
                           {account.status}
                         </span>
                       </div>
-                      <p className="text-2xl font-bold text-gray-900">${account.balance.toFixed(2)}</p>
+                      <p className="text-2xl font-bold text-gray-900">${getLiveBalance(account.id).toFixed(2)}</p>
                       <p className="text-sm text-gray-500 mt-1">Account #{account.account_number}</p>
                     </div>
                   ))}

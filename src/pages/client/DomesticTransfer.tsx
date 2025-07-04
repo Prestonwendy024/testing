@@ -15,7 +15,7 @@ const DomesticTransfer: React.FC = () => {
     transferType: 'immediate'
   })
   const [isLoading, setIsLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const [onHold, setOnHold] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,21 +24,8 @@ const DomesticTransfer: React.FC = () => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000))
     
-    setSuccess(true)
     setIsLoading(false)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSuccess(false)
-      setFormData({
-        fromAccount: '',
-        toAccount: '',
-        recipientName: '',
-        amount: '',
-        description: '',
-        transferType: 'immediate'
-      })
-    }, 3000)
+    setOnHold(true)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -49,22 +36,18 @@ const DomesticTransfer: React.FC = () => {
     }))
   }
 
-  if (success) {
+  if (onHold) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+          <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M8.257 3.099c.366-.446.957-.446 1.323 0l6.518 7.95c.329.401.034.951-.462.951H2.621c-.496 0-.791-.55-.462-.95l6.518-7.951zM11 13a1 1 0 10-2 0 1 1 0 002 0zm-1-2a1 1 0 01-1-1V9a1 1 0 112 0v1a1 1 0 01-1 1z" clipRule="evenodd" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Transfer Successful!</h2>
-          <p className="text-gray-600 mb-4">Your domestic transfer has been processed successfully.</p>
-          <div className="bg-gray-50 rounded-lg p-4 text-left">
-            <p className="text-sm text-gray-600"><span className="font-medium">Amount:</span> ${formData.amount}</p>
-            <p className="text-sm text-gray-600"><span className="font-medium">To:</span> {formData.recipientName}</p>
-            <p className="text-sm text-gray-600"><span className="font-medium">Reference:</span> {Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
-          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Account is on hold</h2>
+          <p className="text-gray-600 mb-4">This action cannot be completed at this time.</p>
+          <p className="text-sm text-gray-500">Please contact customer support for assistance.</p>
         </div>
       </div>
     )
