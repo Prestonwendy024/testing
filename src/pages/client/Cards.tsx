@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../context/AuthContext'
-import { CreditCard, Eye, EyeOff, Lock, Unlock, Plus } from 'lucide-react'
+import { Eye, EyeOff, Lock, Unlock, Plus } from 'lucide-react'
 
-const Cards: React.FC = () => {
-  const { user } = useAuth()
+const ClientCards: React.FC = () => {
   const [showCardNumbers, setShowCardNumbers] = useState(false)
 
   const cards = [
@@ -199,4 +197,4 @@ const Cards: React.FC = () => {
   )
 }
 
-export default Cards 
+export default ClientCards 

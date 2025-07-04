@@ -367,7 +367,7 @@ export const bankingService = {
       })
 
       // Create deposit transaction
-      const depositTransaction = await transactionService.create({
+      await transactionService.create({
         account_id: toAccountId,
         transaction_type: 'transfer',
         amount: amount,

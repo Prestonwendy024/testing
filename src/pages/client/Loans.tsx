@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../context/AuthContext'
 
 const Loans: React.FC = () => {
-  const { user } = useAuth()
   const [formData, setFormData] = useState({
     loanType: '',
     amount: '',

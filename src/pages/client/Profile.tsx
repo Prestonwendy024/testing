@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { useBank } from '../../context/BankContext'
 import { 
   User, 
   Mail, 
@@ -8,39 +7,17 @@ import {
   MapPin, 
   Calendar, 
   Shield, 
-  CreditCard, 
   Settings, 
   Edit, 
   Camera,
-  CheckCircle,
-  AlertCircle,
-  Star,
-  Award,
-  TrendingUp,
-  Lock,
-  Eye,
-  EyeOff,
   Save,
-  X,
-  Upload,
-  Building2,
-  Globe,
-  Briefcase,
-  DollarSign,
-  FileText
+  X
 } from 'lucide-react'
 
 const Profile: React.FC = () => {
   const { user, updateProfile, uploadProfileImage } = useAuth()
-  const { getClientAccounts } = useBank()
   const [isEditing, setIsEditing] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-  const [activeTab, setActiveTab] = useState('personal')
-  const [uploadingImage, setUploadingImage] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const fileInputRef = React.useRef<HTMLInputElement>(null)
 
-  const userAccounts = getClientAccounts(user?.id || '')
 
   // Enhanced profile data
   const profileData = {
@@ -56,36 +33,10 @@ const Profile: React.FC = () => {
       occupation: user?.occupation || '',
       employer: user?.employer || '',
       annualIncome: user?.annualIncome || 0
-    },
-    security: {
-      twoFactorEnabled: user?.twoFactorEnabled || false,
-      lastPasswordChange: '2024-01-15',
-      loginHistory: [
-        { date: '2024-01-20', location: 'New York, NY', device: 'iPhone 15' },
-        { date: '2024-01-19', location: 'New York, NY', device: 'MacBook Pro' },
-        { date: '2024-01-18', location: 'San Francisco, CA', device: 'iPhone 15' }
-      ]
-    },
-    preferences: user?.preferences || {
-      notifications: {
-        email: true,
-        sms: false,
-        push: true
-      },
-      privacy: {
-        shareData: false,
-        marketing: true
-      },
-      language: 'en',
-      timezone: 'America/New_York'
     }
   }
 
   const [formData, setFormData] = useState(profileData.personal)
-
-  const handleInputChange = (field: string, value: string | number) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
-  }
 
   const handleSave = () => {
     const fullName = `${formData.firstName} ${formData.lastName}`.trim()
@@ -112,24 +63,14 @@ const Profile: React.FC = () => {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file && user) {
-      setIsLoading(true)
       try {
         const imageUrl = await uploadProfileImage(file)
         updateProfile({ profileImage: imageUrl })
       } catch (error) {
         console.error('Error uploading image:', error)
       }
-      setIsLoading(false)
     }
   }
-
-  const tabs = [
-    { id: 'personal', label: 'Personal Info', icon: User, color: 'from-indigo-500 to-purple-600' },
-    { id: 'security', label: 'Security', icon: Shield, color: 'from-emerald-500 to-teal-600' },
-    { id: 'preferences', label: 'Preferences', icon: Settings, color: 'from-amber-500 to-orange-600' },
-    { id: 'accounts', label: 'Accounts', icon: CreditCard, color: 'from-pink-500 to-rose-600' },
-    { id: 'documents', label: 'Documents', icon: FileText, color: 'from-violet-500 to-purple-600' }
-  ]
 
   const profileSections = [
     {

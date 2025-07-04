@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useBank } from '../../context/BankContext'
 import { Plus, CreditCard, User, DollarSign, Shield, X, Calendar, Edit, Trash2 } from 'lucide-react'
-import { Account } from '../../types'
 
 const AdminAccounts = () => {
   const { clients, accounts, addAccount, addTransaction, updateClient, deleteAccount, transactions } = useBank()
@@ -20,7 +19,6 @@ const AdminAccounts = () => {
     password: '',
     pin: ''
   })
-  const [editingAccount, setEditingAccount] = useState<Account | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -535,7 +533,6 @@ const AdminAccounts = () => {
                           className="p-2 text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-colors"
                           title="Edit Account"
                           onClick={() => {
-                            setEditingAccount(account)
                             setFormData({
                               client_id: account.client_id,
                               account_type: account.account_type,

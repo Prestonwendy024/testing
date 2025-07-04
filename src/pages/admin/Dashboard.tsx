@@ -135,7 +135,7 @@ const AdminDashboard = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900">{transaction.description}</p>
-                      <p className="text-sm text-gray-500 capitalize">{transaction.type}</p>
+                      <p className="text-sm text-gray-500 capitalize">{transaction.transaction_type}</p>
                     </div>
                   </div>
                   <div className="text-right">

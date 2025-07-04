@@ -2,24 +2,11 @@ import { useAuth } from '../../context/AuthContext'
 import { useBank } from '../../context/BankContext'
 import { 
   TrendingUp, 
-  TrendingDown, 
-  DollarSign, 
   CreditCard, 
-  Receipt, 
-  ArrowUpRight,
-  ArrowDownRight,
-  ArrowDownLeft,
+  DollarSign, 
+  ArrowRight,
   Eye,
-  EyeOff,
-  Plus,
-  Send,
-  Shield,
-  Star,
-  Award,
-  Zap,
-  Calendar,
-  Clock,
-  Users
+  EyeOff
 } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -43,19 +30,19 @@ const ClientDashboard = () => {
 
   const quickActions = [
     {
-      icon: Send,
+      icon: ArrowRight,
       label: 'Send Money',
       color: 'from-indigo-500 to-purple-600',
       onClick: () => navigate('/app/client/domestic-transfer')
     },
     {
-      icon: ArrowDownLeft,
+      icon: ArrowRight,
       label: 'Request Money',
       color: 'from-emerald-500 to-teal-600',
       onClick: () => navigate('/app/client/deposit')
     },
     {
-      icon: Plus,
+      icon: ArrowRight,
       label: 'Add Account',
       color: 'from-amber-500 to-orange-600',
       onClick: () => navigate('/app/client/accounts')
@@ -127,7 +114,7 @@ const ClientDashboard = () => {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Shield className="w-5 h-5 opacity-80" />
+            <ArrowRight className="w-5 h-5 opacity-80" />
             <span className="text-sm opacity-80">Secured by BankApp</span>
           </div>
           <div className="flex space-x-2">
@@ -135,7 +122,7 @@ const ClientDashboard = () => {
               <TrendingUp className="w-4 h-4" />
             </button>
             <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
-              <Zap className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -164,7 +151,7 @@ const ClientDashboard = () => {
         <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div className="flex items-center justify-between mb-4">
             <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center">
-              <Receipt className="w-6 h-6 text-white" />
+              <ArrowRight className="w-6 h-6 text-white" />
             </div>
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-1">{userTransactions.length}</h3>
@@ -197,7 +184,7 @@ const ClientDashboard = () => {
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold">Recent Transactions</h3>
             <div className="w-8 h-8 bg-gradient-to-br from-indigo-100 to-purple-200 rounded-lg flex items-center justify-center">
-              <Receipt className="w-4 h-4 text-indigo-600" />
+              <ArrowRight className="w-4 h-4 text-indigo-600" />
             </div>
           </div>
           
@@ -211,7 +198,7 @@ const ClientDashboard = () => {
                         ? 'bg-gradient-to-br from-green-100 to-green-200' 
                         : 'bg-gradient-to-br from-red-100 to-red-200'
                     }`}>
-                      <Receipt className={`w-5 h-5 ${
+                      <ArrowRight className={`w-5 h-5 ${
                         transaction.amount > 0 ? 'text-green-600' : 'text-red-600'
                       }`} />
                     </div>

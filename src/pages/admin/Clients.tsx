@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useBank } from '../../context/BankContext'
 import { Client } from '../../types'
-import { Plus, User, Mail, Phone, MapPin, Calendar, Building, DollarSign, Shield, X } from 'lucide-react'
+import { Plus, User, Mail, Phone, MapPin, Calendar, X } from 'lucide-react'
 
 const AdminClients = () => {
   const { clients, addClient, addAccount, updateClient, deleteClient } = useBank()
