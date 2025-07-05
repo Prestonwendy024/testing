@@ -83,7 +83,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         name: `${client.first_name} ${client.last_name}`,
         email: client.email,
         role: 'client',
-        accountNumber: client.account_number,
+        accountNumber: client.account_number || undefined,
         pin: client.pin,
         createdAt: client.created_at,
         profileImage: client.profile_image_url ?? undefined,
