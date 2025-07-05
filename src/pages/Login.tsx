@@ -135,20 +135,20 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full space-y-6 lg:space-y-8">
         <div className="text-center">
-          <div className="flex justify-center mb-6">
-            <img src="/meridian-logo.svg" alt="Meridian Bank" className="w-16 h-16" />
+          <div className="flex justify-center mb-4 lg:mb-6">
+            <img src="/meridian-logo.svg" alt="Meridian Bank" className="w-12 h-12 lg:w-16 lg:h-16" />
           </div>
-          <h2 className="text-3xl font-bold text-white mb-2">Welcome to Meridian Bank</h2>
-          <p className="text-blue-200">
+          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">Welcome to Meridian Bank</h2>
+          <p className="text-sm lg:text-base text-blue-200">
             {step === 'credentials' ? 'Sign in to your account' : 
              step === 'pin' ? 'Enter your PIN' : 
              step === 'setup' ? 'Set up your password and PIN' : 'First time setup'}
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 border border-white/20">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-6 lg:p-8 border border-white/20">
           {step === 'credentials' ? (
             <form className="space-y-6" onSubmit={handleCredentialsSubmit}>
               <div>

@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { X } from 'lucide-react'
 
-const ClientSidebar: React.FC = () => {
+interface ClientSidebarProps {
+  onClose?: () => void
+}
+
+const ClientSidebar: React.FC<ClientSidebarProps> = ({ onClose }) => {
   const location = useLocation()
   const { user, logout } = useAuth()
 
@@ -110,14 +115,25 @@ const ClientSidebar: React.FC = () => {
   ]
 
   return (
-    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0">
+    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 lg:relative">
       <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center space-x-3">
-          <img src="/meridian-logo.svg" alt="Meridian Bank" className="w-8 h-8" />
-          <div>
-            <h1 className="text-lg font-semibold text-gray-900">Meridian Bank</h1>
-            <p className="text-xs text-gray-500">User Portal</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <img src="/meridian-logo.svg" alt="Meridian Bank" className="w-8 h-8" />
+            <div>
+              <h1 className="text-lg font-semibold text-gray-900">Meridian Bank</h1>
+              <p className="text-xs text-gray-500">User Portal</p>
+            </div>
           </div>
+          {/* Mobile close button */}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="lg:hidden text-gray-500 hover:text-gray-700 focus:outline-none"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          )}
         </div>
       </div>
 

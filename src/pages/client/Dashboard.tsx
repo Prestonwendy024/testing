@@ -59,17 +59,17 @@ const ClientDashboard = () => {
     <>
       {/* Welcome Header */}
       <div className="slide-in">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-4 space-y-4 lg:space-y-0">
           <div>
-            <h1 className="text-4xl font-bold mb-2 gradient-text">
+            <h1 className="text-2xl lg:text-4xl font-bold mb-2 gradient-text">
               Welcome back, {user?.name?.split(' ')[0]}! 
             </h1>
-            <p className="text-gray-600 text-lg">Here's what's happening with your accounts today</p>
+            <p className="text-gray-600 text-base lg:text-lg">Here's what's happening with your accounts today</p>
           </div>
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setShowBalance(!showBalance)}
-              className="btn-secondary flex items-center space-x-2"
+              className="btn-secondary flex items-center space-x-2 text-sm lg:text-base"
             >
               {showBalance ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               <span>{showBalance ? 'Hide' : 'Show'} Balance</span>
@@ -79,45 +79,45 @@ const ClientDashboard = () => {
       </div>
 
       {/* Main Balance Card */}
-      <div className="card-gradient-1 rounded-3xl p-8 text-white shadow-2xl slide-in" style={{ animationDelay: '200ms' }}>
-        <div className="flex justify-between items-start mb-6">
+      <div className="card-gradient-1 rounded-3xl p-6 lg:p-8 text-white shadow-2xl slide-in" style={{ animationDelay: '200ms' }}>
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-6 space-y-4 lg:space-y-0">
           <div>
             <p className="text-sm opacity-80 mb-2">TOTAL BALANCE</p>
-            <h2 className="text-5xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-2">
               {showBalance ? `$${totalBalance.toLocaleString()}` : '****'}
             </h2>
-            <p className="text-lg opacity-90">Across {userAccounts.length} accounts</p>
+            <p className="text-base lg:text-lg opacity-90">Across {userAccounts.length} accounts</p>
           </div>
-          <div className="text-right">
-            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-2">
-              <DollarSign className="w-8 h-8" />
+          <div className="text-center lg:text-right">
+            <div className="w-12 h-12 lg:w-16 lg:h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-2 mx-auto lg:mx-0">
+              <DollarSign className="w-6 h-6 lg:w-8 lg:h-8" />
             </div>
             <p className="text-sm opacity-80">Last updated</p>
             <p className="text-sm opacity-80">{new Date().toLocaleTimeString()}</p>
           </div>
         </div>
         
-        <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-3 gap-4 lg:gap-6 mb-6">
           <div className="text-center">
-            <p className="text-2xl font-bold">{userAccounts.length}</p>
-            <p className="text-sm opacity-80">Active Accounts</p>
+            <p className="text-xl lg:text-2xl font-bold">{userAccounts.length}</p>
+            <p className="text-xs lg:text-sm opacity-80">Active Accounts</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold">{userTransactions.length}</p>
-            <p className="text-sm opacity-80">Transactions This Month</p>
+            <p className="text-xl lg:text-2xl font-bold">{userTransactions.length}</p>
+            <p className="text-xs lg:text-sm opacity-80">Transactions This Month</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold">850</p>
-            <p className="text-sm opacity-80">Reward Points</p>
+            <p className="text-xl lg:text-2xl font-bold">850</p>
+            <p className="text-xs lg:text-sm opacity-80">Reward Points</p>
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+          <div className="flex items-center justify-center lg:justify-start space-x-2">
             <ArrowRight className="w-5 h-5 opacity-80" />
             <span className="text-sm opacity-80">Secured by BankApp</span>
           </div>
-          <div className="flex space-x-2">
+          <div className="flex justify-center lg:justify-end space-x-2">
             <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
               <TrendingUp className="w-4 h-4" />
             </button>
@@ -129,7 +129,7 @@ const ClientDashboard = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 slide-in" style={{ animationDelay: '400ms' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 slide-in" style={{ animationDelay: '400ms' }}>
         <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-200 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div className="flex items-center justify-between mb-4">
             <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -160,25 +160,25 @@ const ClientDashboard = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 slide-in" style={{ animationDelay: '800ms' }}>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 slide-in" style={{ animationDelay: '800ms' }}>
         {quickActions.map((action, index) => (
           <button
             key={action.label}
-            className={`bg-gradient-to-r ${action.color} p-6 rounded-2xl text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group`}
+            className={`bg-gradient-to-r ${action.color} p-4 lg:p-6 rounded-2xl text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group`}
             style={{ animationDelay: `${1000 + index * 100}ms` }}
             onClick={action.onClick}
           >
-            <div className="flex flex-col items-center space-y-3">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                <action.icon className="w-6 h-6" />
+            <div className="flex flex-col items-center space-y-2 lg:space-y-3">
+              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                <action.icon className="w-5 h-5 lg:w-6 lg:h-6" />
               </div>
-              <span className="font-semibold">{action.label}</span>
+              <span className="font-semibold text-sm lg:text-base">{action.label}</span>
             </div>
           </button>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {/* Recent Transactions */}
         <div className="card-hover slide-in" style={{ animationDelay: '1200ms' }}>
           <div className="flex items-center justify-between mb-6">
