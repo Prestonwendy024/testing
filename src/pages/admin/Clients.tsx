@@ -173,9 +173,6 @@ const AdminClients = () => {
         await updateClient(selectedClient.id, { account_number: accountNumber })
       }
       
-      // Send email to client (mock)
-      console.log(`Email sent to ${selectedClient.email} with account number: ${accountNumber}`)
-      
       setShowAccountForm(false)
       setSelectedClient(null)
       alert(`Account created successfully! Account number: ${accountNumber}\nEmail sent to ${selectedClient.email}`)

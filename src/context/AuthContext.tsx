@@ -29,7 +29,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { clients } = useBank();
 
   const login = (accountNumber: string, password: string, pin: string): boolean => {
-    console.log('Clients in AuthContext:', clients);
     // Admin login logic (unchanged)
     if (accountNumber === 'ADMIN001' && password === 'admin123' && pin === '1234') {
       setUser({
@@ -71,7 +70,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       return true
     }
     // Client login logic
-    console.log('Attempting login with:', { accountNumber, password, pin })
     const client = clients.find(
       c => c.account_number === accountNumber && c.password === password && c.pin === pin
     );

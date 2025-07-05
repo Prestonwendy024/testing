@@ -205,3 +205,306 @@
     100% { background-position: 0% 50%; }
   }
 } 
+
+/* Custom backgrounds and gradients for Website landing page */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.about-bg {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+.services-bg {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+.reviews-bg {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+.contact-bg {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+.card-gradient {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Website section styles */
+.services-section {
+  @apply py-20;
+}
+
+.reviews-section {
+  @apply py-20;
+}
+
+.contact-section {
+  @apply py-20;
+}
+
+.section-header {
+  @apply text-center mb-16;
+}
+
+.section-header h2 {
+  @apply text-4xl font-bold text-gray-900 mb-4;
+}
+
+.section-header p {
+  @apply text-xl text-gray-600 max-w-2xl mx-auto;
+}
+
+.services-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+}
+
+.service-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg transition-all duration-300 text-center;
+}
+
+.service-icon {
+  @apply w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6;
+}
+
+.service-icon i {
+  @apply text-white text-2xl;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.service-card h3 {
+  @apply text-xl font-semibold text-gray-900 mb-4;
+}
+
+.service-card p {
+  @apply text-gray-600 mb-6;
+}
+
+.learn-more {
+  @apply text-primary-600 font-medium hover:text-primary-700 transition-colors inline-flex items-center gap-2;
+}
+
+.reviews-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.reviews-grid-two {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto;
+}
+
+.review-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg;
+}
+
+.review-stars {
+  @apply flex gap-1 mb-4;
+}
+
+.review-stars i {
+  @apply text-yellow-400;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.review-card p {
+  @apply text-gray-600 mb-6 italic;
+}
+
+.review-author {
+  @apply flex items-center gap-4;
+}
+
+.review-author img {
+  @apply w-12 h-12 rounded-full object-cover;
+}
+
+.review-author h4 {
+  @apply font-semibold text-gray-900;
+}
+
+.review-author span {
+  @apply text-gray-600 text-sm;
+}
+
+.contact-content {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-12;
+}
+
+.contact-info h2 {
+  @apply text-4xl font-bold text-white mb-6;
+}
+
+.contact-info p {
+  @apply text-xl text-gray-300 mb-8;
+}
+
+.contact-details {
+  @apply space-y-6;
+}
+
+.contact-item {
+  @apply flex items-start gap-4;
+}
+
+.contact-item i {
+  @apply text-primary-400 text-2xl mt-1;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.contact-item h4 {
+  @apply text-white font-semibold mb-2;
+}
+
+.contact-item p {
+  @apply text-gray-300;
+}
+
+.contact-form {
+  @apply bg-white/10 backdrop-blur-sm rounded-2xl p-8;
+}
+
+.form-group {
+  @apply mb-6;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  @apply w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-400;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  @apply text-gray-300;
+}
+
+.form-group select option {
+  @apply bg-gray-800 text-white;
+}
+
+.footer {
+  @apply bg-gray-900 text-white py-16;
+}
+
+.footer-content {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12;
+}
+
+.footer-section h4 {
+  @apply text-lg font-semibold mb-4;
+}
+
+.footer-section ul {
+  @apply space-y-2;
+}
+
+.footer-section ul li a {
+  @apply text-gray-300 hover:text-white transition-colors;
+}
+
+.footer-logo {
+  @apply flex items-center gap-3 mb-4;
+}
+
+.footer-logo img {
+  @apply h-8 w-auto;
+}
+
+.footer-logo h3 {
+  @apply text-xl font-bold;
+}
+
+.footer-section p {
+  @apply text-gray-300 mb-6;
+}
+
+.social-links {
+  @apply flex gap-4;
+}
+
+.social-links a {
+  @apply w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors;
+}
+
+.social-links i {
+  @apply text-white;
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+}
+
+.footer-bottom {
+  @apply border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4;
+}
+
+.footer-bottom p {
+  @apply text-gray-400;
+}
+
+.footer-bottom-links {
+  @apply flex gap-6;
+}
+
+.footer-bottom-links a {
+  @apply text-gray-400 hover:text-white transition-colors;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.leaders-section {
+  @apply py-20 bg-gray-50;
+}
+
+.advantages-section {
+  @apply py-20 bg-white;
+}
+
+.advantages-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.advantage-card {
+  @apply text-center p-8;
+}
+
+.advantage-icon {
+  @apply w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6;
+}
+
+.advantage-icon i {
+  @apply text-white text-2xl;
+}
+
+.advantage-card h3 {
+  @apply text-xl font-semibold text-gray-900 mb-4;
+}
+
+.advantage-card p {
+  @apply text-gray-600;
+} 
