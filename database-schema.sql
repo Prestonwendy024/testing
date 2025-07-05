@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS admin_users (
 -- Create clients table
 CREATE TABLE IF NOT EXISTS clients (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    account_number VARCHAR(20) UNIQUE NOT NULL,
+    account_number VARCHAR(20) UNIQUE,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,

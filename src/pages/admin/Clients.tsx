@@ -62,7 +62,6 @@ const AdminClients = () => {
       } else {
         const clientData = {
           ...formData,
-          account_number: '', // Placeholder until first account is created
           annual_income: formData.annual_income ? parseFloat(formData.annual_income) : 0,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),

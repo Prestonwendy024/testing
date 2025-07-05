@@ -187,7 +187,7 @@ export interface Database {
       clients: {
         Row: {
           id: string
-          account_number: string
+          account_number: string | null
           first_name: string
           last_name: string
           email: string
@@ -211,7 +211,7 @@ export interface Database {
         }
         Insert: {
           id?: string
-          account_number: string
+          account_number?: string
           first_name: string
           last_name: string
           email: string

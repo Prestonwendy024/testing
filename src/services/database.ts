@@ -1,11 +1,28 @@
 import { supabase } from '../lib/supabase'
 import type { Database } from '../lib/supabase'
+import type { Client, Account, Transaction, Card, Loan } from '../types'
 
-type Client = Database['public']['Tables']['clients']['Row']
-type Account = Database['public']['Tables']['accounts']['Row']
-type Transaction = Database['public']['Tables']['transactions']['Row']
-type Card = Database['public']['Tables']['cards']['Row']
-type Loan = Database['public']['Tables']['loans']['Row']
+// Type conversion functions
+const convertDbClientToClient = (dbClient: Database['public']['Tables']['clients']['Row']): Client => ({
+  ...dbClient,
+  account_number: dbClient.account_number || undefined
+})
+
+const convertDbAccountToAccount = (dbAccount: Database['public']['Tables']['accounts']['Row']): Account => ({
+  ...dbAccount
+})
+
+const convertDbTransactionToTransaction = (dbTransaction: Database['public']['Tables']['transactions']['Row']): Transaction => ({
+  ...dbTransaction
+})
+
+const convertDbCardToCard = (dbCard: Database['public']['Tables']['cards']['Row']): Card => ({
+  ...dbCard
+})
+
+const convertDbLoanToLoan = (dbLoan: Database['public']['Tables']['loans']['Row']): Loan => ({
+  ...dbLoan
+})
 
 // Client operations
 export const clientService = {
@@ -16,7 +33,7 @@ export const clientService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbClientToClient)
   },
 
   async getById(id: string): Promise<Client | null> {
@@ -27,7 +44,7 @@ export const clientService = {
       .single()
     
     if (error) throw error
-    return data
+    return data ? convertDbClientToClient(data) : null
   },
 
   async getByAccountNumber(accountNumber: string): Promise<Client | null> {
@@ -38,30 +55,42 @@ export const clientService = {
       .single()
     
     if (error) throw error
-    return data
+    return data ? convertDbClientToClient(data) : null
   },
 
-  async create(client: Database['public']['Tables']['clients']['Insert']): Promise<Client> {
+  async create(client: Omit<Client, 'id' | 'created_at' | 'updated_at'>): Promise<Client> {
+    // Convert custom type to database type
+    const dbClient: Database['public']['Tables']['clients']['Insert'] = {
+      ...client,
+      account_number: client.account_number || undefined
+    }
+    
     const { data, error } = await supabase
       .from('clients')
-      .insert(client)
+      .insert(dbClient)
       .select()
       .single()
     
     if (error) throw error
-    return data
+    return convertDbClientToClient(data)
   },
 
-  async update(id: string, updates: Database['public']['Tables']['clients']['Update']): Promise<Client> {
+  async update(id: string, updates: Partial<Client>): Promise<Client> {
+    // Convert custom type to database type
+    const dbUpdates: Database['public']['Tables']['clients']['Update'] = {
+      ...updates,
+      account_number: updates.account_number || undefined
+    }
+    
     const { data, error } = await supabase
       .from('clients')
-      .update(updates)
+      .update(dbUpdates)
       .eq('id', id)
       .select()
       .single()
     
     if (error) throw error
-    return data
+    return convertDbClientToClient(data)
   },
 
   async delete(id: string): Promise<void> {
@@ -83,7 +112,7 @@ export const accountService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbAccountToAccount)
   },
 
   async getByClientId(clientId: string): Promise<Account[]> {
@@ -94,7 +123,7 @@ export const accountService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbAccountToAccount)
   },
 
   async getById(id: string): Promise<Account | null> {
@@ -105,7 +134,7 @@ export const accountService = {
       .single()
     
     if (error) throw error
-    return data
+    return data ? convertDbAccountToAccount(data) : null
   },
 
   async create(account: Database['public']['Tables']['accounts']['Insert']): Promise<Account> {
@@ -116,7 +145,7 @@ export const accountService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbAccountToAccount(data)
   },
 
   async update(id: string, updates: Database['public']['Tables']['accounts']['Update']): Promise<Account> {
@@ -128,7 +157,7 @@ export const accountService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbAccountToAccount(data)
   },
 
   async updateBalance(id: string, newBalance: number): Promise<Account> {
@@ -140,7 +169,7 @@ export const accountService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbAccountToAccount(data)
   },
 
   async delete(id: string): Promise<void> {
@@ -162,7 +191,7 @@ export const transactionService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbTransactionToTransaction)
   },
 
   async getByAccountId(accountId: string): Promise<Transaction[]> {
@@ -173,7 +202,7 @@ export const transactionService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbTransactionToTransaction)
   },
 
   async getById(id: string): Promise<Transaction | null> {
@@ -184,7 +213,7 @@ export const transactionService = {
       .single()
     
     if (error) throw error
-    return data
+    return data ? convertDbTransactionToTransaction(data) : null
   },
 
   async create(transaction: Database['public']['Tables']['transactions']['Insert']): Promise<Transaction> {
@@ -195,7 +224,7 @@ export const transactionService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbTransactionToTransaction(data)
   },
 
   async update(id: string, updates: Database['public']['Tables']['transactions']['Update']): Promise<Transaction> {
@@ -207,7 +236,7 @@ export const transactionService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbTransactionToTransaction(data)
   },
 
   async delete(id: string): Promise<void> {
@@ -229,7 +258,7 @@ export const cardService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbCardToCard)
   },
 
   async getByClientId(clientId: string): Promise<Card[]> {
@@ -240,7 +269,7 @@ export const cardService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbCardToCard)
   },
 
   async create(card: Database['public']['Tables']['cards']['Insert']): Promise<Card> {
@@ -251,7 +280,7 @@ export const cardService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbCardToCard(data)
   },
 
   async update(id: string, updates: Database['public']['Tables']['cards']['Update']): Promise<Card> {
@@ -263,7 +292,7 @@ export const cardService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbCardToCard(data)
   },
 
   async delete(id: string): Promise<void> {
@@ -285,7 +314,7 @@ export const loanService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbLoanToLoan)
   },
 
   async getByClientId(clientId: string): Promise<Loan[]> {
@@ -296,7 +325,7 @@ export const loanService = {
       .order('created_at', { ascending: false })
     
     if (error) throw error
-    return data || []
+    return (data || []).map(convertDbLoanToLoan)
   },
 
   async create(loan: Database['public']['Tables']['loans']['Insert']): Promise<Loan> {
@@ -307,7 +336,7 @@ export const loanService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbLoanToLoan(data)
   },
 
   async update(id: string, updates: Database['public']['Tables']['loans']['Update']): Promise<Loan> {
@@ -319,7 +348,7 @@ export const loanService = {
       .single()
     
     if (error) throw error
-    return data
+    return convertDbLoanToLoan(data)
   },
 
   async delete(id: string): Promise<void> {

@@ -36,7 +36,7 @@ interface BankContextType {
   }
   
   // Actions
-  addClient: (client: Omit<Client, 'id' | 'accounts' | 'createdAt'> & { account_number: string }) => Promise<void>
+  addClient: (client: Omit<Client, 'id' | 'accounts' | 'createdAt'>) => Promise<void>
   addAccount: (account: Omit<Account, 'id' | 'createdAt'>) => Promise<Account>
   addTransaction: (transaction: Omit<Transaction, 'id' | 'createdAt'>) => Promise<void>
   addCard: (card: Omit<Card, 'id' | 'createdAt'>) => Promise<void>
@@ -215,7 +215,7 @@ export const BankProvider: React.FC<BankProviderProps> = ({ children }) => {
   }
 
   // Actions
-  const addClient = async (clientData: Omit<Client, 'id' | 'accounts' | 'createdAt'> & { account_number: string }) => {
+  const addClient = async (clientData: Omit<Client, 'id' | 'accounts' | 'createdAt'>) => {
     try {
       const newClient = await clientService.create(clientData)
       setClients(prev => [newClient, ...prev])

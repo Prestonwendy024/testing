@@ -69,7 +69,7 @@ export interface Transaction {
 
 export interface Client {
   id: string
-  account_number?: string
+  account_number?: string | null
   first_name: string
   last_name: string
   email: string
