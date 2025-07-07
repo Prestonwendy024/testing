@@ -115,7 +115,7 @@ const ClientSidebar: React.FC<ClientSidebarProps> = ({ onClose }) => {
   ]
 
   return (
-    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 lg:relative">
+    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 lg:relative flex flex-col overflow-y-auto">
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -137,61 +137,63 @@ const ClientSidebar: React.FC<ClientSidebarProps> = ({ onClose }) => {
         </div>
       </div>
 
-      <div className="p-4">
-        <div className="mb-6">
-          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-            {user?.profileImage ? (
-              <img
-                src={user.profileImage}
-                alt={user.name}
-                className="w-10 h-10 object-cover rounded-full border"
-              />
-            ) : (
-              <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                </svg>
+      <div className="flex-1 flex flex-col justify-between">
+        <div className="p-4">
+          <div className="mb-6">
+            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              {user?.profileImage ? (
+                <img
+                  src={user.profileImage}
+                  alt={user.name}
+                  className="w-10 h-10 object-cover rounded-full border"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              )}
+              <div>
+                <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                <p className="text-xs text-gray-500">{user?.accountNumber}</p>
               </div>
-            )}
-            <div>
-              <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-              <p className="text-xs text-gray-500">{user?.accountNumber}</p>
             </div>
           </div>
-        </div>
 
-        <nav className="space-y-1">
-          {menuItems.map((item) => {
-            const isActive = location.pathname === item.path
-            return (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                  isActive
-                    ? 'bg-gray-100 text-gray-900 border-l-4 border-gray-800'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-              >
-                <span className={`${isActive ? 'text-gray-800' : 'text-gray-500'}`}>
-                  {item.icon}
-                </span>
-                <span>{item.name}</span>
-              </Link>
-            )
-          })}
-        </nav>
-      </div>
-      <div className="absolute bottom-0 left-0 w-full p-4 border-t border-gray-200 bg-white">
-        <button
-          onClick={() => { logout(); window.location.href = '/login'; }}
-          className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-800 w-full"
-        >
-          <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7" />
-          </svg>
-          <span>Logout</span>
-        </button>
+          <nav className="space-y-1">
+            {menuItems.map((item) => {
+              const isActive = location.pathname === item.path
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                    isActive
+                      ? 'bg-gray-100 text-gray-900 border-l-4 border-gray-800'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <span className={`${isActive ? 'text-gray-800' : 'text-gray-500'}`}>
+                    {item.icon}
+                  </span>
+                  <span>{item.name}</span>
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+        <div className="p-4 border-t border-gray-200 bg-white">
+          <button
+            onClick={() => { logout(); window.location.href = '/login'; }}
+            className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-800 w-full"
+          >
+            <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7" />
+            </svg>
+            <span>Logout</span>
+          </button>
+        </div>
       </div>
     </div>
   )

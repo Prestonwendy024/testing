@@ -48,16 +48,13 @@ const AdminAccounts = () => {
     
     // Check if client already has password or pin
     const client = clients.find(c => c.id === formData.client_id)
-    console.log('Selected client:', client)
     if (client) {
       const updates: any = {}
       if (!client.password && formData.password) updates.password = formData.password
       if (!client.pin && formData.pin) updates.pin = formData.pin
-      console.log('Updates to apply:', updates)
       if (Object.keys(updates).length > 0) {
         try {
           await updateClient(client.id, updates)
-          console.log('Client updated successfully')
         } catch (err) {
           console.error('Error updating client:', err)
         }

@@ -73,7 +73,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const client = clients.find(
       c => c.account_number === accountNumber && c.password === password && c.pin === pin
     );
-    console.log('Matched client:', client)
     if (client) {
       setUser({
         id: client.id,
