@@ -157,7 +157,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onClose }) => {
             })}
           </nav>
         </div>
-        <div className="p-4 border-t border-gray-200 bg-white mb-6">
+        <div className="p-4 border-t border-gray-200 bg-white mb-16">
           <Link
             to="/app/admin/profile"
             className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 mb-2"
