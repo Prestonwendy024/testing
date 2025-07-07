@@ -183,7 +183,7 @@ const ClientSidebar: React.FC<ClientSidebarProps> = ({ onClose }) => {
             })}
           </nav>
         </div>
-        <div className="p-4 border-t border-gray-200 bg-white">
+        <div className="p-4 border-t border-gray-200 bg-white mb-6">
           <button
             onClick={() => { logout(); window.location.href = '/login'; }}
             className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-800 w-full"
